@@ -4,6 +4,8 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
+    // set true will be error if mutate vuex store state outside mutation handlers
+    strict: true,
     state: {
         products: [
             { name: 'Banana Skin', price: 10 },
@@ -23,5 +25,14 @@ export const store = new Vuex.Store({
                 };
             });
         }
+    },
+    // mutation can be tracked by vue devtool
+    mutations: {
+        reduceMutation(state){
+            state.products.forEach(product => {
+                product.price -= 1;
+            });
+        }
     }
 });
+

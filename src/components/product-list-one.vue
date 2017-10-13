@@ -14,6 +14,7 @@
                 <span class="price">£{{ product.price }}</span>
             </li>
         </ul>
+        <button @click="reduce">Reduce Price</button>
     </div>
 </template>
 <script>
@@ -27,6 +28,17 @@ export default {
         discountedProducts() {
             // use computed to get store data from Vuex getters
             return this.$store.getters.discountedProducts;
+        }
+    },
+    methods: {
+        reduce(){
+            /* Error: [vuex] Do not mutate vuex store state outside mutation handlers. because Vuex strict mode                
+                this.$store.state.products.forEach(product => {
+                product.price -= 1;
+            });*/
+
+            // commit a mutation
+            this.$store.commit('reduceMutation');
         }
     }
 };
