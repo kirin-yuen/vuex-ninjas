@@ -28,10 +28,20 @@ export const store = new Vuex.Store({
     },
     // mutation can be tracked by vue devtool
     mutations: {
-        reduceMutation(state){
+        reduceMutation(state, payload){
             state.products.forEach(product => {
-                product.price -= 1;
+                product.price -= payload;
             });
+        }
+    },
+    // one of the limitation of mutation is that can not be use asynchronous task(grab some data from server) with it
+    actions: {
+        // context is some kind of store, payload is the parameter that pass from method dispatch
+        reduceAction(context, payload){
+            // settimeout is some kind of the synchronous task
+            window.setTimeout(() => {
+                context.commit('reduceMutation', payload);
+            }, 2000);
         }
     }
 });

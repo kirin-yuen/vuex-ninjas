@@ -14,7 +14,7 @@
                 <span class="price">£{{ product.price }}</span>
             </li>
         </ul>
-        <button @click="reduce">Reduce Price</button>
+        <button @click="reduce(10)">Reduce Price 10 per time</button>
     </div>
 </template>
 <script>
@@ -31,14 +31,9 @@ export default {
         }
     },
     methods: {
-        reduce(){
-            /* Error: [vuex] Do not mutate vuex store state outside mutation handlers. because Vuex strict mode                
-                this.$store.state.products.forEach(product => {
-                product.price -= 1;
-            });*/
-
-            // commit a mutation
-            this.$store.commit('reduceMutation');
+        reduce(amount){
+            // dispatch an action with the parmeter, that is a good practice to instead of directly committion a mutation even it is not any kind of asynchronous task
+            this.$store.dispatch('reduceAction', amount)
         }
     }
 };
