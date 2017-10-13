@@ -11,13 +11,12 @@
 </template>
 <script>
 export default {
-    props: ['products'],
     name: 'product-list-two',
-
-    data() {
-        return {
-
-        };
+    computed: {
+        products(){
+            // use computed to get store data from Vuex
+            return this.$store.state.products;
+        }
     }
 };
 </script>

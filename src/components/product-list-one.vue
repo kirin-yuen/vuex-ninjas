@@ -11,12 +11,11 @@
 </template>
 <script>
 export default {
-    props: ['products'],
     name: 'product-list-one',
 
     data() {
         return {
-
+            products: this.$store.state.products
         };
     }
 };
