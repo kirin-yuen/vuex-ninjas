@@ -7,16 +7,27 @@
                 <span class="price">£{{ product.price }}</span>
             </li>
         </ul>
+        <h3>after discount</h3>
+        <ul>
+            <li v-for="product in discountedProducts">
+                <span class="name">{{ product.name }}</span>
+                <span class="price">£{{ product.price }}</span>
+            </li>
+        </ul>
     </div>
 </template>
 <script>
 export default {
     name: 'product-list-one',
-
-    data() {
-        return {
-            products: this.$store.state.products
-        };
+    computed: {
+        products() {
+            // use computed to get store data from Vuex
+            return this.$store.state.products;
+        },
+        discountedProducts() {
+            // use computed to get store data from Vuex getters
+            return this.$store.getters.discountedProducts;
+        }
     }
 };
 </script>
